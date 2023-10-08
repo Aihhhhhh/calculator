@@ -13,7 +13,7 @@ h1{
 input[type=text]{
     border-radius: 10px;
     border-color: mediumpurple;
-    padding: 30px;
+    padding: 20px;
 }
 #digits{
     display: flex;
@@ -29,8 +29,22 @@ input[type=text]{
 }
 .digitsdisplay>*{
     display: flex;
-    background-color: aqua;
+    background-color: coral;
     border-radius: 15px;
-    padding: 50px;
+    border-color: mediumpurple;
+    padding: 25px;
+    flex-wrap: wrap;
+}
+.operations{
+    display: flex;
+    gap: 10px;
+}
+.operations>*{
+    display: flex;
+    flex-direction: column;
+    background-color: coral;
+    border-radius: 15px;
+    border-color:blue;
+    padding: 25px;
     flex-wrap: wrap;
 }
