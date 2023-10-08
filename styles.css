@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+}
+h1{
+    text-align: center;
+}
+.display{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+input[type=text]{
+    border-radius: 10px;
+    border-color: mediumpurple;
+}
+#digits{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
