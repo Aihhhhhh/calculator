@@ -37,6 +37,7 @@ input[type=text]{
 }
 .operations{
     display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 .operations>*{
@@ -47,4 +48,7 @@ input[type=text]{
     border-color:blue;
     padding: 25px;
     flex-wrap: wrap;
+}
+.operations.clear{
+    display: flex;
 }
