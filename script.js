@@ -20,7 +20,7 @@ let operator;
 let num2;
 
 //create an operate function that takes an operator and two numbers and then calls on of the above functions on the numbers
-const ope
+const operate = (num1,operator,num2) => add || subtract || multiply || divide
 
 
 
