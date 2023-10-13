@@ -7,30 +7,46 @@
 </head>
 <body>
     <h1> CALCULATOR </h1>
+    <!-- create button for displaying results of operations -->
     <div class="display">
         <input type="text">
     </div>
-    <div id ="digits" class = "digitss">
-        <div class ="digitsdisplay">
-            <button clsss ="zero"> 0 </button>
-            <button class="one"> 1 </button>
-            <button class ="Two"> 2 </button>
-            <button class="Three"> 3</button>
-            <button class="Four"> 4 </button>
-            <button class ="Five"> 5 </button>
-            <button class ="Six"> 6 </button>
-            <button class ="Seven"> 7 </button>
-            <button class ='Eight'> 8 </button>
-            <button class ="Nine"> 9 </button>
-            <button class="point"> . </button>
+    <!-- create a container for the digits and float numbers-->
+    <section class ="calc">
+        <div class = wholecontainer>
+            <div class ="digitsdisplay">
+                <div class = "upperdigits">
+                    <button clsss ="nine"> 9 </button>
+                    <button class="eight"> 8 </button>
+                    <button class ="seven"> 7 </button>
+                </div>
+                <div class ="middledigits">
+                    <button class="six"> 6</button>
+                    <button class="Five"> 5 </button>
+                    <button class ="Four"> 4 </button>
+                </div>
+                <div class="lowerdigits">
+                    <button class ="three"> 3 </button>
+                    <button class ="two"> 2 </button>
+                    <button class ='one'> 1 </button>
+                </div>
+                <div class ="extras">
+                    <button class ="zero"> 0 </button>
+                    <button class="point"> . </button>
+                    <button class ="percentage"> %</button>
+                </div>
+            </div>
+            <!-- create buttons for basic mathematical operations-->
+            <div class ="operations">
+                <button class="addition"> + </button>
+                <button class ="subtraction"> - </button>
+                <button class ="multiplication"> * </button>
+                <button class="division"> / </button>
+                <button class ="equals"> = </button>
+                <button class ="clear"> C </button>
+            </div>
         </div>
-        <div class ="operations">
-            <button class="addition"> + </button>
-            <button class ="subtraction"> - </button>
-            <button class ="multiplication"> * </button>
-            <button class="division"> / </button>
-        </div>
-    </div>
+    </section>
     <script src ="script.js"></script>
 </body>
 </html>
