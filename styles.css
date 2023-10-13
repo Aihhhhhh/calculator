@@ -6,6 +6,7 @@ h1{
 }
 .display{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
@@ -15,40 +16,59 @@ input[type=text]{
     border-color: mediumpurple;
     padding: 20px;
 }
-#digits{
+.wholecontainer{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 .digitsdisplay{
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
     flex-wrap: wrap;
-    max-width: 1100px;
+    max-width: 650px;
+    border-radius: 20px;
 }
 .digitsdisplay>*{
     display: flex;
-    background-color: coral;
-    border-radius: 15px;
-    border-color: mediumpurple;
-    padding: 25px;
-    flex-wrap: wrap;
-}
-.operations{
-    display: flex;
-    flex-direction: column;
     gap: 10px;
+}
+.upperdigits>*{
+    display: flex;
+    background-color: coral;
+    padding: 26px;
+    border-radius: 9px;
+    border-color: blue;
+}
+.middledigits>*{
+    display: flex;
+    background-color: coral;
+    padding: 26px;
+    border-radius: 9px;
+    border-color: blue;
+}
+.lowerdigits>*{
+    display: flex;
+    background-color: coral;
+    padding: 26px;
+    border-radius: 9px;
+    border-color: blue;
+}
+.extras>*{
+    display: flex;
+    background-color: coral;
+    padding: 26px;
+    border-radius: 9px;
+    border-color: blue;
 }
 .operations>*{
     display: flex;
-    flex-direction: column;
     background-color: coral;
-    border-radius: 15px;
-    border-color:blue;
-    padding: 25px;
-    flex-wrap: wrap;
-}
-.operations.clear{
-    display: flex;
+    padding: 15px;
+    border-radius: 9px;
+    border-color: blue;
+    gap:50px;
 }
