@@ -32,7 +32,6 @@ input[type ="text"]{
     padding: 20px;
     font-size: 40px;
     text-align: right;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .wholecontainer{
     display: flex;
@@ -60,6 +59,10 @@ input[type ="text"]{
 }
 .upperdigits>*{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 24px;
     background-color: coral;
     border-radius: 50%;
     width: 50px;
@@ -69,7 +72,11 @@ input[type ="text"]{
 }
 .middledigits>*{
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: coral;
+    font-size: 24px;
+    font-weight: bold;
     padding: 30px;
     border-radius: 50%;
     width: 50px;
@@ -78,6 +85,10 @@ input[type ="text"]{
 }
 .lowerdigits>*{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 24px;
     background-color: coral;
     padding: 30px;
     border-radius: 50%;
@@ -87,18 +98,32 @@ input[type ="text"]{
 }
 .extras>*{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 24px;
     background-color: coral;
     padding: 30px;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-color: blue;
+}
+.operations{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 .operations>*{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 24px;
+    display: flex;
     flex-wrap: wrap;
     background-color: coral;
-    padding: 15px;
+    padding: 5px;
     border-radius: 50%;
     width: 50px;
     height: 50px;
