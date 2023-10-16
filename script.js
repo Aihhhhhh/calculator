@@ -99,3 +99,8 @@ decimals.addEventListener("click",()=>{
     displayValue.value+= decimals.innerHTML;
     console.log(decimals.innerHTML);
 })
+const percentage = document.querySelector(".percentage");
+percentage.addEventListener("click",() =>{
+    console.log(percentage.innerHTML);
+    displayValue.value+=percentage.innerHTML
+})
