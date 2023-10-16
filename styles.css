@@ -1,23 +1,43 @@
 *{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    outline: none;
+    background-color: #ecf0f3;
+}
+body{
+    height: 100vh;
 }
 h1{
     text-align: center;
+    padding-top: 20px;
+    margin-bottom: 20px;
 }
 .display{
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+    border: none;
+    color:#000e1a;
 }
-input[type=text]{
-    border-radius: 10px;
-    border-color: mediumpurple;
+input[type ="text"]{
+    box-shadow: inset -6px -6px 13px #fff,
+                inset  6px 6px 13px rgba(0,0,0,.16);
+    background-color: #ecf0f3;
+    color: rgb(26,25,26);
+    border-radius: 32px;
+    height: 68px;
+    width: 258px;
+    border: none;
     padding: 20px;
+    font-size: 40px;
+    text-align: right;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .wholecontainer{
     display: flex;
+    height: 100vh;
+    background-color: #ecf0f3;
     align-items: center;
     justify-content: center;
     gap: 10px;
@@ -31,6 +51,8 @@ input[type=text]{
     flex-wrap: wrap;
     max-width: 650px;
     border-radius: 20px;
+    box-shadow: 6px 6px 13px #fff,
+                6px 6px 13px rgba(0,0,0,.16);
 }
 .digitsdisplay>*{
     display: flex;
@@ -39,36 +61,46 @@ input[type=text]{
 .upperdigits>*{
     display: flex;
     background-color: coral;
-    padding: 26px;
-    border-radius: 9px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
     border-color: blue;
+    padding: 30px;
 }
 .middledigits>*{
     display: flex;
     background-color: coral;
-    padding: 26px;
-    border-radius: 9px;
+    padding: 30px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
     border-color: blue;
 }
 .lowerdigits>*{
     display: flex;
     background-color: coral;
-    padding: 26px;
-    border-radius: 9px;
+    padding: 30px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
     border-color: blue;
 }
 .extras>*{
     display: flex;
     background-color: coral;
-    padding: 26px;
-    border-radius: 9px;
+    padding: 30px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
     border-color: blue;
 }
 .operations>*{
     display: flex;
+    flex-wrap: wrap;
     background-color: coral;
     padding: 15px;
-    border-radius: 9px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
     border-color: blue;
-    gap:50px;
 }
