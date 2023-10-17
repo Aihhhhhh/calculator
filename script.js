@@ -15,13 +15,14 @@ console.log(divide(8,5));
 //create first variable to hold first number
 let num1= null;
 //declare operator
-let operator= ['+','-','*','/'];
+//let operator= ['+','-','*','/'];//
 //declare second variable to hold second number
 let num2=null;
 //store result
 //create function ate that takes two numbers and an operator
 //declare current operation
 let displayValue = document.getElementById("result");
+
 //store results
 /*const dis = (val) =>{
     document.getElementById("result").value += val
@@ -75,22 +76,30 @@ const operate = (num1,num2,operator) => {
 }
 operate();
 //target the equals sign
-const equalls = document.querySelector(".equals");
-console.log(equalls);
+//create equal function to update the display when the equals sign button is clicked
+function equal(){
+    const equalls = document.querySelector(".equals");
+    console.log(equalls);
 //attach an event listener to listen to the event click
-equalls.addEventListener("click",()=>{
-    console.log(equalls.innerHTML)
-    
-    console.log(displayValue.value)
-})
+    equalls.addEventListener("click",()=>{
+        console.log(equalls.innerHTML);
+        //remove whitespaces from the value of the displayvalue
+        displayValue.value = displayValue.value.replace(/ /g,"");
+        console.log(displayValue.value)
+    })
+}
+equal()
 //target the clear button
-const clears = document.querySelector(".clear");
-console.log(clears);
+function clear(){
+    const clears = document.querySelector(".clear");
+    console.log(clears);
 //attach an event listener
-clears.addEventListener("click",()=>{
-    displayValue.value = null;
-    console.log(clears.innerHTML);
-})
+    clears.addEventListener("click",()=>{
+        displayValue.value = null;
+        console.log(clears.innerHTML);
+    })
+};
+clear()
 //target the decimal point
 const decimals = document.querySelector(".point");
 console.log(decimals);
