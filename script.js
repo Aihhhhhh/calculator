@@ -33,6 +33,7 @@ let displayValue = document.getElementById("result");
 //use DOM manipulation to get all the buttons
 const calckeys = document.querySelectorAll(".number");
 console.log(calckeys);
+//add event listener to each number button
 calckeys.forEach(calc => {
     calc.addEventListener("click",()=>{
         displayValue.value+= calc.innerHTML;
@@ -53,18 +54,22 @@ operations.forEach(oper =>{
 //create operate function that takes two numbers and an operator
 const operate = (num1,num2,operator) => {
     switch(operator){
+        //if the operator is +
         case '+':
             displayValue.value = add(num1,num2);
             console.log(displayValue.value);
             break;
+            //if the operator is -
         case  '-':
             displayValue.value = subtract(num1,num2);
             console.log(displayValue.value);
             break;
+            //if operator is *
         case '*':
             displayValue.value = multiply(num1,num2);
             console.log(displayValue.value);
             break;
+            //if operator is /
         case '/':
             displayValue.value = divide(num1,num2);
             console.log(displayValue.value);
@@ -108,6 +113,7 @@ decimals.addEventListener("click",()=>{
     displayValue.value+= decimals.innerHTML;
     console.log(decimals.innerHTML);
 })
+//target the decimal point button  and add event listener
 const percentage = document.querySelector(".percentage");
 percentage.addEventListener("click",() =>{
     console.log(percentage.innerHTML);
