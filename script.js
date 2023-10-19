@@ -24,6 +24,21 @@ let num2=null;
 let displayValue = document.getElementById("result");
 
 let tempArr = [];
+//initialize variables to implement the shunting yard algorithm
+//create a function that takes in an iput and returns an output in postfix notation
+const toRPN = (input)=>{
+    let output ="";
+    const stack = [];
+//iterate through the input and ignore all whitesppaces and call the handle token function
+    for(let i of input){
+        if(i === "") continue;
+        handleToken(i);
+    }
+
+    return output;
+}
+const result = toRPN("1+2");// result should be 1 2+
+console.log(result)
 //store results
 /*const dis = (val) =>{
     document.getElementById("result").value += val
@@ -93,7 +108,8 @@ function equal(){
         console.log(equalls.innerHTML);
         //remove whitespaces from the value of the displayvalue
         displayValue.value = displayValue.value.replace(/ /g,"");
-        console.log(displayValue.value)
+        output.push(displayValue.value)
+        console.log(output)
     })
 }
 equal()
@@ -138,5 +154,5 @@ function parenthesis(){
 function closeeParenthesis(){
     const closeParenthes = document.querySelector("#close-parenthesis");
     displayValue.value+= closeParenthes.innerHTML;
-    console.log(closeParenthes);
+    console.log(displayValue.value);
 };
