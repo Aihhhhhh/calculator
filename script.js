@@ -23,6 +23,7 @@ let num2=null;
 //declare current operation
 let displayValue = document.getElementById("result");
 
+let tempArr = [];
 //store results
 /*const dis = (val) =>{
     document.getElementById("result").value += val
@@ -37,7 +38,9 @@ console.log(calckeys);
 calckeys.forEach(calc => {
     calc.addEventListener("click",()=>{
         displayValue.value+= calc.innerHTML;
-        console.log(displayValue.value)
+        console.log(displayValue.value);
+        tempArr.push(displayValue.value);
+        console.log(tempArr.join());
     })
 })
 //add event listener 'click' to the nu
@@ -118,4 +121,9 @@ const percentage = document.querySelector(".percentage");
 percentage.addEventListener("click",() =>{
     console.log(percentage.innerHTML);
     displayValue.value+=percentage.innerHTML
-})
+});
+function deletes(){
+    displayValue.value= displayValue.value.replace(/ /g,"")
+    displayValue.value= displayValue.value.substring(0,displayValue.value.length -1);
+}
+    
