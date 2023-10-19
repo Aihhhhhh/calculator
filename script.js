@@ -117,13 +117,26 @@ decimals.addEventListener("click",()=>{
     console.log(decimals.innerHTML);
 })
 //target the decimal point button  and add event listener
-const percentage = document.querySelector(".percentage");
+/*const percentage = document.querySelector(".percentage");
 percentage.addEventListener("click",() =>{
     console.log(percentage.innerHTML);
     displayValue.value+=percentage.innerHTML
 });
+*/
+//create function that handles the delete button
 function deletes(){
-    displayValue.value= displayValue.value.replace(/ /g,"")
+    displayValue.value= displayValue.value.replace(/ /g,"");
     displayValue.value= displayValue.value.substring(0,displayValue.value.length -1);
 }
-    
+//create a function that handles the opening parenthesis
+function parenthesis(){
+    const openParenthes = document.querySelector("#open-parenthesis");
+    displayValue.value+= openParenthes.innerHTML;
+    console.log(displayValue.value);
+}
+//create a function that handles the closing parenthesis
+function closeeParenthesis(){
+    const closeParenthes = document.querySelector("#close-parenthesis");
+    displayValue.value+= closeParenthes.innerHTML;
+    console.log(closeParenthes);
+};
