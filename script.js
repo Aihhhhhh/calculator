@@ -24,9 +24,38 @@ let num2=null;
 let displayValue = document.getElementById("result");
 
 let tempArr = [];
+//create operations object
+const operators = {
+    '^': {
+      prec: 4,
+      assoc: 'right',
+    },
+    '*': {
+      prec: 3,
+      assoc: 'left',
+    },
+    '/': {
+      prec: 3,
+      assoc: 'left',
+    },
+    '+': {
+      prec: 2,
+      assoc: 'left',
+    },
+    '-': {
+      prec: 2,
+      assoc: 'left',
+    },
+  };
+  //create an assertion function that checks the input
+const assert = (predicate) =>{
+    if(predicate) return;//if everything is fine,carry on
+    throw new Error("Assertion failed due to invalid token")
+}
 //initialize variables to implement the shunting yard algorithm
 //create a function that takes in an iput and returns an output in postfix notation
 const toRPN = (input)=>{
+    const opSymbols = Object.keys(operators)
     let output ="";
     const stack = [];
 //iterate through the input and ignore all whitesppaces and call the handle token function
@@ -61,31 +90,22 @@ const handleToken = (token)=>{
              }
              stack.push(o1);
              break;
+        case token === '(':
+            stack.push(token);
+            break;
+        case token === ')':
+            let topOfStack = stack.at(-1);
+            while (topOfStack.at(-1) !== '('){
+                assert(stack.length !== 0);
+                addToOutput(stack.pop());
+                topOfStack = stack.at(-1);
             }
+        assert(stack.at(-1) === '(');
+        stack.pop();
+        break;
+    }
 };
-//create object for holding the operators,starting with the one with highest precedence and their associativity
-const operators = {
-    '^': {
-      prec: 4,
-      assoc: 'right',
-    },
-    '*': {
-      prec: 3,
-      assoc: 'left',
-    },
-    '/': {
-      prec: 3,
-      assoc: 'left',
-    },
-    '+': {
-      prec: 2,
-      assoc: 'left',
-    },
-    '-': {
-      prec: 2,
-      assoc: 'left',
-    },
-  };
+
 //store results
 /*const dis = (val) =>{
     document.getElementById("result").value += val
