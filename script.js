@@ -23,7 +23,7 @@ let num2=null;
 //declare current operation
 let displayValue = document.getElementById("result");
 
-let tempArr = [];
+
 //create operations object
 const operators = {
     '^': {
@@ -58,53 +58,74 @@ const toRPN = (input)=>{
     const opSymbols = Object.keys(operators)
     let output ="";
     const stack = [];
+
+    const peek = () => {
+        return stack.at(-1);
+      };
+    
+      const addToOutput = (token) => {
+        output += ' ' + token;
+      };
+    
+      const handlePop = () => {
+        return stack.pop();
+      }
 //iterate through the input and ignore all whitesppaces and call the handle token function
-    for(let i of input){
-        if(i === "") continue;
-        handleToken(i);
-    }
-    return output;
-}
-const result = toRPN("1+2");// result should be 1 2+
-console.log(result)
+
 //create function to handle the token
-const handleToken = (token)=>{
-    switch(true){
-        //if its a number, add it to the output string
-        case !isNaN(parseFloat(token)):
-            output+= '' + token;
-            break;
-        case Object.keys(operators).includes(token):
-            const o1 = token;
-            let o2 = stack.at(-1); // look at the top of the stack (last element of the array)
-             while (
-                o2 !== undefined && 
-                o2 !== '(' &&
-                (operators[o2].prec > operators[o1].prec ||
-                    (operators[o2].prec === operators[o1].prec &&
-              operators[o1].assoc === 'left'))
-             )
-             {
-                output += ' ' + stack.pop();
-                o2 = stack.at(-1);
-             }
-             stack.push(o1);
-             break;
-        case token === '(':
-            stack.push(token);
-            break;
-        case token === ')':
-            let topOfStack = stack.at(-1);
-            while (topOfStack.at(-1) !== '('){
-                assert(stack.length !== 0);
-                addToOutput(stack.pop());
-                topOfStack = stack.at(-1);
+      const handleToken = (token)=>{
+        switch(true){
+            case !isNaN(parseFloat(token)):
+                addToOutput(token);
+                break;
+                case opSymbols.includes(token):
+                    const o1 = token;
+                    let o2 = peek(); // look at the top of the stack (last element of the array)
+                    while (
+                        o2 !== undefined && 
+                        o2 !== '(' &&
+                        (operators[o2].prec > operators[o1].prec ||
+                            (operators[o2].prec === operators[o1].prec &&
+                                operators[o1].assoc === 'left'))
+                                )
+                                {
+                                    addToOutput(handlePop());
+                                    o2 = peek();
+                                }
+                                stack.push(o1);
+                                break;
+                case token === '(':
+                    stack.push(token);
+                    break;
+                case token === ')':
+                    let topOfStack = peep();
+                    while (topOfStack !== '('){
+                        assert(stack.length !== 0);
+                        addToOutput(stack.pop());
+                        topOfStack = peep();
+                    }
+                    assert(peek() === '(');
+                    handlePop();
+                    break;
+                default:
+                    throw new Error(`Invalid token: ${token}`);
+                }
             }
-        assert(stack.at(-1) === '(');
-        stack.pop();
-        break;
-    }
-};
+            //check for empty spaces and ignore them
+            for (let i of input) {
+                if (i === " ") continue;
+                handleToken(i);
+            }
+            //assert the stack is not empty and the last item isnt a left parenthesis
+            while (stack.length !== 0) {
+                assert(peek() !== '(');
+                addToOutput(stack.pop());
+            }
+            return output;
+        };
+const input = displayValue.value;
+const result = toRPN(input);
+console.log(result);
 
 //store results
 /*const dis = (val) =>{
@@ -121,8 +142,6 @@ calckeys.forEach(calc => {
     calc.addEventListener("click",()=>{
         displayValue.value+= calc.innerHTML;
         console.log(displayValue.value);
-        tempArr.push(displayValue.value);
-        console.log(tempArr.join());
     })
 })
 //add event listener 'click' to the nu
@@ -174,9 +193,8 @@ function equal(){
     equalls.addEventListener("click",()=>{
         console.log(equalls.innerHTML);
         //remove whitespaces from the value of the displayvalue
-        displayValue.value = displayValue.value.replace(/ /g,"");
-        output.push(displayValue.value)
-        console.log(output)
+        displayValue.value = toRPN(displayValue.value);
+        console.log(displayValue.value)
     })
 }
 equal()
