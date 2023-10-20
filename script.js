@@ -34,11 +34,58 @@ const toRPN = (input)=>{
         if(i === "") continue;
         handleToken(i);
     }
-
     return output;
 }
 const result = toRPN("1+2");// result should be 1 2+
 console.log(result)
+//create function to handle the token
+const handleToken = (token)=>{
+    switch(true){
+        //if its a number, add it to the output string
+        case !isNaN(parseFloat(token)):
+            output+= '' + token;
+            break;
+        case Object.keys(operators).includes(token):
+            const o1 = token;
+            let o2 = stack.at(-1); // look at the top of the stack (last element of the array)
+             while (
+                o2 !== undefined && 
+                o2 !== '(' &&
+                (operators[o2].prec > operators[o1].prec ||
+                    (operators[o2].prec === operators[o1].prec &&
+              operators[o1].assoc === 'left'))
+             )
+             {
+                output += ' ' + stack.pop();
+                o2 = stack.at(-1);
+             }
+             stack.push(o1);
+             break;
+            }
+};
+//create object for holding the operators,starting with the one with highest precedence and their associativity
+const operators = {
+    '^': {
+      prec: 4,
+      assoc: 'right',
+    },
+    '*': {
+      prec: 3,
+      assoc: 'left',
+    },
+    '/': {
+      prec: 3,
+      assoc: 'left',
+    },
+    '+': {
+      prec: 2,
+      assoc: 'left',
+    },
+    '-': {
+      prec: 2,
+      assoc: 'left',
+    },
+  };
 //store results
 /*const dis = (val) =>{
     document.getElementById("result").value += val
