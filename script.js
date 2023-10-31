@@ -54,78 +54,100 @@ const assert = (predicate) =>{
 }
 //initialize variables to implement the shunting yard algorithm
 //create a function that takes in an iput and returns an output in postfix notation
-const toRPN = (input)=>{
+/*const evaluate = (input)=>{
     const opSymbols = Object.keys(operators)
-    let output ="";
+    let output = [];
     const stack = [];
-
+//function that looks at the last item of the array
     const peek = () => {
         return stack.at(-1);
-      };
-    
-      const addToOutput = (token) => {
-        output += ' ' + token;
-      };
-    
-      const handlePop = () => {
-        return stack.pop();
-      }
+    };
+    //function that adds items to the output array
+    const addToOutput = (token) => {
+        output.push(token);
+    };
+      //function to handle pop
+    const handlePop = () => {
+        const op = stack.pop();
+
+        if(op === '(') return;
+
+        const right = parseFloat(output.pop());
+        const left = parseFloat(output.pop());
+
+        switch(op){
+            case '+':
+                return left+ right;
+            case '-':
+                return left-right;
+            case '*':
+                return left*right;
+            case '/':
+                return left/right;
+            default:
+                throw new Error(`invalid op ${op}`);
+        }
+    }
 //iterate through the input and ignore all whitesppaces and call the handle token function
 
 //create function to handle the token
-      const handleToken = (token)=>{
+    const handleToken = (token)=>{
         switch(true){
+            //check if token is a number
             case !isNaN(parseFloat(token)):
                 addToOutput(token);
                 break;
-                case opSymbols.includes(token):
-                    const o1 = token;
-                    let o2 = peek(); // look at the top of the stack (last element of the array)
-                    while (
-                        o2 !== undefined && 
-                        o2 !== '(' &&
-                        (operators[o2].prec > operators[o1].prec ||
-                            (operators[o2].prec === operators[o1].prec &&
-                                operators[o1].assoc === 'left'))
-                                )
-                                {
-                                    addToOutput(handlePop());
-                                    o2 = peek();
-                                }
-                                stack.push(o1);
-                                break;
-                case token === '(':
-                    stack.push(token);
-                    break;
-                case token === ')':
-                    let topOfStack = peep();
-                    while (topOfStack !== '('){
-                        assert(stack.length !== 0);
-                        addToOutput(stack.pop());
-                        topOfStack = peep();
-                    }
-                    assert(peek() === '(');
-                    handlePop();
-                    break;
-                default:
-                    throw new Error(`Invalid token: ${token}`);
+            case opSymbols.includes(token):
+                const o1 = token;
+                let o2 = peek(); // look at the top of the stack (last element of the array)
+                while (
+                    o2 !== undefined && 
+                    o2 !== '(' &&
+                    (operators[o2].prec > operators[o1].prec ||
+                        (operators[o2].prec === operators[o1].prec &&
+                            operators[o1].assoc === 'left'))
+                ){
+                    addToOutput(handlePop());
+                    o2 = peek();
                 }
-            }
-            //check for empty spaces and ignore them
-            for (let i of input) {
-                if (i === " ") continue;
-                handleToken(i);
-            }
-            //assert the stack is not empty and the last item isnt a left parenthesis
-            while (stack.length !== 0) {
-                assert(peek() !== '(');
-                addToOutput(stack.pop());
-            }
-            return output;
-        };
-const input = displayValue.value;
-const result = toRPN(input);
-console.log(result);
+                stack.push(o1);
+                break;
+            case token === '(':
+                stack.push(token);
+                break;
+            case token === ')':
+                let topOfStack = peek();
+                while (topOfStack !== '('){
+                    assert(stack.length !== 0);
+                    addToOutput(stack.pop());
+                    topOfStack = peek();
+                }
+                assert(peek() === '(');
+                handlePop();
+                break;
+            default:
+                throw new Error(`Invalid token: ${token}`);
+        }
+    };
+
+//check for empty spaces and ignore them
+    for(let i of input){
+        if(i === " ")continue;
+        handleToken(i);
+    }
+//assert the stack is not empty and the last item isnt a left parenthesis
+    while (stack.length !== 0){
+        assert(peek() !== '(');
+        addToOutput(stack.pop());
+    }
+    return output[0];
+};
+    
+*/  
+
+//create an RPN evaluator
+
+
 
 //store results
 /*const dis = (val) =>{
@@ -191,12 +213,12 @@ function equal(){
     console.log(equalls);
 //attach an event listener to listen to the event click
     equalls.addEventListener("click",()=>{
-        console.log(equalls.innerHTML);
-        //remove whitespaces from the value of the displayvalue
-        displayValue.value = toRPN(displayValue.value);
+        displayValue.value += displayValue.innerHTML
         console.log(displayValue.value)
     })
+        //call the toRPN function on the display value
 }
+
 equal()
 //target the clear button
 function clear(){
@@ -205,7 +227,7 @@ function clear(){
 //attach an event listener
     clears.addEventListener("click",()=>{
         displayValue.value = null;
-        console.log(clears.innerHTML);
+        console.log(displayValue.value);
     })
 };
 clear()
@@ -215,7 +237,7 @@ console.log(decimals);
 //add an event listener to capture the float and update the value on the display
 decimals.addEventListener("click",()=>{
     displayValue.value+= decimals.innerHTML;
-    console.log(decimals.innerHTML);
+    console.log(displayValue.value);
 })
 //target the decimal point button  and add event listener
 /*const percentage = document.querySelector(".percentage");
