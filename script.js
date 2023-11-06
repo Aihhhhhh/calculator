@@ -65,10 +65,19 @@ console.log(operations);
 //attach an event listener to listen for clicks
 operations.forEach(oper =>{
      oper.addEventListener("click",()=>{
-        console.log(oper.innerHTML)
+        console.log(oper.innerHTML);
+        handleSymbol();
         displayValue.value += oper.innerHTML
     })
 });
+function handleSymbol(){
+    if(displayValue.value!== ""){
+        displayValue.value = displayValue.value.replace(/ /g,"");
+    }else{
+        displayValue.value= 0;
+    }
+}
+handleSymbol()
 //create operate function that takes two numbers and an operator
 const operate = (num1,num2,operator) => {
     switch(operator){
