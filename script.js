@@ -29,7 +29,51 @@ let buffer = "0";
 let previousOperator;
 //create operations object
 
-//create an RPN evaluator
+//store operators in an object
+const operators = {
+    "*":{
+        prec:3,
+        assoc: left,
+    },
+    "/":{
+        prec:3,
+        assoc:left,
+    },
+    "+":{
+        prec:2,
+        assoc:left,
+    },
+    "-":{
+        prec:2,
+        assoc:left,
+    },
+}
+//implement the shunting yard algorithm
+const evaluate = (displayValue.value) => {
+    const opSymbols = Object.keys(operators);
+    const output = [];
+    const stack = [];
+
+    const peek = () =>{
+        return stack.at(-1);
+    };
+
+    const addToOutput =()=>{
+        output.push(token);
+    };
+
+    const handlePop =()=>{
+        const op = stack.pop();
+    }
+
+    if(op === openParenthes){
+        return;
+    }
+    num1 = parseFloat(output.pop());
+    num2= parseFloat(output.pop());
+
+    operate();
+}
 
 //store results
 /*const dis = (val) =>{
@@ -83,7 +127,7 @@ const operate = (num1,num2,operator) => {
     switch(operator){
         //if the operator is +
         case '+':
-            displayValue.value = add(num1,num2);
+            displayValue.value = add(num1,num2)
             console.log(displayValue.value);
             break;
             //if the operator is -
@@ -114,6 +158,9 @@ function equal(){
     console.log(equalls);
 //attach an event listener to listen to the event click
     equalls.addEventListener("click",()=>{
+        if(displayValue.value === 0){
+            return
+        }
         displayValue.value += displayValue.innerHTML
         console.log(displayValue.value)
     })
