@@ -23,131 +23,13 @@ let num2=null;
 //declare current operation
 let displayValue = document.getElementById("result");
 
-
+//
+let runningTotal = 0;
+let buffer = "0";
+let previousOperator;
 //create operations object
-const operators = {
-    '^': {
-      prec: 4,
-      assoc: 'right',
-    },
-    '*': {
-      prec: 3,
-      assoc: 'left',
-    },
-    '/': {
-      prec: 3,
-      assoc: 'left',
-    },
-    '+': {
-      prec: 2,
-      assoc: 'left',
-    },
-    '-': {
-      prec: 2,
-      assoc: 'left',
-    },
-  };
-  //create an assertion function that checks the input
-const assert = (predicate) =>{
-    if(predicate) return;//if everything is fine,carry on
-    throw new Error("Assertion failed due to invalid token")
-}
-//initialize variables to implement the shunting yard algorithm
-//create a function that takes in an iput and returns an output in postfix notation
-/*const evaluate = (input)=>{
-    const opSymbols = Object.keys(operators)
-    let output = [];
-    const stack = [];
-//function that looks at the last item of the array
-    const peek = () => {
-        return stack.at(-1);
-    };
-    //function that adds items to the output array
-    const addToOutput = (token) => {
-        output.push(token);
-    };
-      //function to handle pop
-    const handlePop = () => {
-        const op = stack.pop();
-
-        if(op === '(') return;
-
-        const right = parseFloat(output.pop());
-        const left = parseFloat(output.pop());
-
-        switch(op){
-            case '+':
-                return left+ right;
-            case '-':
-                return left-right;
-            case '*':
-                return left*right;
-            case '/':
-                return left/right;
-            default:
-                throw new Error(`invalid op ${op}`);
-        }
-    }
-//iterate through the input and ignore all whitesppaces and call the handle token function
-
-//create function to handle the token
-    const handleToken = (token)=>{
-        switch(true){
-            //check if token is a number
-            case !isNaN(parseFloat(token)):
-                addToOutput(token);
-                break;
-            case opSymbols.includes(token):
-                const o1 = token;
-                let o2 = peek(); // look at the top of the stack (last element of the array)
-                while (
-                    o2 !== undefined && 
-                    o2 !== '(' &&
-                    (operators[o2].prec > operators[o1].prec ||
-                        (operators[o2].prec === operators[o1].prec &&
-                            operators[o1].assoc === 'left'))
-                ){
-                    addToOutput(handlePop());
-                    o2 = peek();
-                }
-                stack.push(o1);
-                break;
-            case token === '(':
-                stack.push(token);
-                break;
-            case token === ')':
-                let topOfStack = peek();
-                while (topOfStack !== '('){
-                    assert(stack.length !== 0);
-                    addToOutput(stack.pop());
-                    topOfStack = peek();
-                }
-                assert(peek() === '(');
-                handlePop();
-                break;
-            default:
-                throw new Error(`Invalid token: ${token}`);
-        }
-    };
-
-//check for empty spaces and ignore them
-    for(let i of input){
-        if(i === " ")continue;
-        handleToken(i);
-    }
-//assert the stack is not empty and the last item isnt a left parenthesis
-    while (stack.length !== 0){
-        assert(peek() !== '(');
-        addToOutput(stack.pop());
-    }
-    return output[0];
-};
-    
-*/  
 
 //create an RPN evaluator
-
-
 
 //store results
 /*const dis = (val) =>{
@@ -163,9 +45,19 @@ console.log(calckeys);
 calckeys.forEach(calc => {
     calc.addEventListener("click",()=>{
         displayValue.value+= calc.innerHTML;
+        handleNumber()
         console.log(displayValue.value);
     })
-})
+});
+function handleNumber(){
+    if(displayValue.value !== ""){
+        displayValue.value = displayValue.value.replace(/ /g,"");
+    }
+    else{
+        displayValue.value =0
+    }
+}
+handleNumber()
 //add event listener 'click' to the nu
 //target the maths operations
 const operations = document.querySelectorAll(".calculator-key");
