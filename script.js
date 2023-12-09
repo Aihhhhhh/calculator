@@ -13,68 +13,19 @@ console.log(divide(8,5));
 
 //create variables for the operation process which includes a number, operator and another number
 //create first variable to hold first number
-let num1= null;
+let firstOperand ='';
+let secondOperand='';
+let currentOperation=null;
+let shouldResetScreen = false;
 //declare operator
 //let operator= ['+','-','*','/'];//
 //declare second variable to hold second number
-let num2=null;
 //store result
 //create function ate that takes two numbers and an operator
 //declare current operation
 let displayValue = document.getElementById("result");
 
 //
-let runningTotal = 0;
-let buffer = "0";
-let previousOperator;
-//create operations object
-
-//store operators in an object
-const operators = {
-    "*":{
-        prec:3,
-        assoc: left,
-    },
-    "/":{
-        prec:3,
-        assoc:left,
-    },
-    "+":{
-        prec:2,
-        assoc:left,
-    },
-    "-":{
-        prec:2,
-        assoc:left,
-    },
-}
-//implement the shunting yard algorithm
-const evaluate = (displayValue.value) => {
-    const opSymbols = Object.keys(operators);
-    const output = [];
-    const stack = [];
-
-    const peek = () =>{
-        return stack.at(-1);
-    };
-
-    const addToOutput =()=>{
-        output.push(token);
-    };
-
-    const handlePop =()=>{
-        const op = stack.pop();
-    }
-
-    if(op === openParenthes){
-        return;
-    }
-    num1 = parseFloat(output.pop());
-    num2= parseFloat(output.pop());
-
-    operate();
-}
-
 //store results
 /*const dis = (val) =>{
     document.getElementById("result").value += val
@@ -102,7 +53,7 @@ function handleNumber(){
     }
 }
 handleNumber()
-//add event listener 'click' to the nu
+
 //target the maths operations
 const operations = document.querySelectorAll(".calculator-key");
 console.log(operations);
@@ -121,33 +72,28 @@ function handleSymbol(){
         displayValue.value= 0;
     }
 }
-handleSymbol()
+handleSymbol();
+//function for converting operation
+
 //create operate function that takes two numbers and an operator
 const operate = (num1,num2,operator) => {
+    num1=Number(num1)
+    num2=Number(num2)
     switch(operator){
         //if the operator is +
         case '+':
-            displayValue.value = add(num1,num2)
-            console.log(displayValue.value);
-            break;
+            return add(num1,num2)
             //if the operator is -
         case  '-':
-            displayValue.value = subtract(num1,num2);
-            console.log(displayValue.value);
-            break;
+            return subtract(num1,num2);
             //if operator is *
         case '*':
-            displayValue.value = multiply(num1,num2);
-            console.log(displayValue.value);
-            break;
+            return multiply(num1,num2);
             //if operator is /
         case '/':
-            displayValue.value = divide(num1,num2);
-            console.log(displayValue.value);
-            break;
+            return divide(num1,num2);
         default:
-            displayValue.value = null;
-            console.log(displayValue.value)
+            return null;
     }
 }
 operate();
@@ -161,6 +107,7 @@ function equal(){
         if(displayValue.value === 0){
             return
         }
+        evaluate(displayValue.value)
         displayValue.value += displayValue.innerHTML
         console.log(displayValue.value)
     })
