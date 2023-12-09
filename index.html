@@ -11,6 +11,10 @@
     <div class="display">
         <input type="text" class="dissplay" id="result" placeholder=0>
     </div>
+    <div class="screen">
+        <div class="screen-last" id="lastOperationScreen"></div>
+        <div class="screen-current" id="currentOperationScreen">0</div>
+    </div>
     <!-- create a container for the digits and float numbers-->
     <section class ="calc">
         <div class = wholecontainer>
@@ -36,14 +40,14 @@
                 <div class ="extras">
                     <button class ="number" id="zero"> 0 </button>
                     <button class="point"> . </button>
-                    <button class ="percentage"> %</button>
-                    <button class="calculator-key" data-action="subtraction">/</button>
+                    <button class ="clear"> C </button>
+                    <button class="calculator-key" data-action="subtraction">-</button>
                 </div>
             <!-- create buttons for basic mathematical operations-->
                 <div class="others">
-                    <button class ="Del">Del</button>
-                    <button class ="clear"> C </button>
-                    <button class="parenthesis">()</button>
+                    <button class ="Del" onclick="deletes()">Del</button>
+                    <button class ="parenthesis" id="open-parenthesis" onclick="parenthesis()">(</button>
+                    <button class="parenthesis" id="close-parenthesis" onclick="closeeParenthesis()">)</button>
                     <button class="equals"> =</button>
                 </div>
             </div>
