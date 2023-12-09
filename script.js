@@ -40,10 +40,11 @@ console.log(calckeys);
 calckeys.forEach(calc => {
     calc.addEventListener("click",()=>{
         displayValue.value+= calc.innerHTML;
-        handleNumber()
+        handleNumber();
         console.log(displayValue.value);
     })
 });
+
 function handleNumber(){
     if(displayValue.value !== ""){
         displayValue.value = displayValue.value.replace(/ /g,"");
@@ -73,6 +74,11 @@ function handleSymbol(){
     }
 }
 handleSymbol();
+//function for resetting screen
+function resetScreen(){
+    displayValue.value.innerHTML='';
+    shouldResetScreen = false;
+}
 //function for converting operation
 
 //create operate function that takes two numbers and an operator
