@@ -17,6 +17,8 @@ let firstOperand ='';
 let secondOperand='';
 let currentOperation=null;
 let shouldResetScreen = false;
+const lastOperationScreen = document.getElementById('lastOperationScreen');
+const currentOperationScreen = document.getElementById('currentOperationScreen');
 //declare operator
 //let operator= ['+','-','*','/'];//
 //declare second variable to hold second number
@@ -75,11 +77,6 @@ function handleSymbol(){
 }
 handleSymbol();
 //function for resetting screen
-function resetScreen(){
-    displayValue.value.innerHTML='';
-    shouldResetScreen = false;
-}
-//function for converting operation
 
 //create operate function that takes two numbers and an operator
 const operate = (num1,num2,operator) => {
@@ -111,16 +108,9 @@ function equal(){
     console.log(equalls);
 //attach an event listener to listen to the event click
     equalls.addEventListener("click",()=>{
-        if(displayValue.value === 0){
-            return
-        }
-        evaluate(displayValue.value)
-        displayValue.value += displayValue.innerHTML
-        console.log(displayValue.value)
+        evaluate()
     })
-        //call the toRPN function on the display value
-}
-
+        }
 equal()
 //target the clear button
 function clear(){
